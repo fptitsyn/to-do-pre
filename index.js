@@ -67,7 +67,7 @@ function getTasksFromDOM() {
 }
 
 function saveTasks(tasks) {
-  localStorage.setItem('tasks', JSON.stringify(tasks));
+  	localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 items = loadTasks();
@@ -79,7 +79,11 @@ items.forEach((item) => {
 
 formElement.addEventListener('submit', function (evt) {
 	evt.preventDefault(); 
-	const outputText = inputElement.value; 
+	const outputText = inputElement.value;
+	if (outputText === "") {
+		return;
+	}
+
 	const itemElements = createItem(outputText);
 	listElement.prepend(itemElements);
 	items = getTasksFromDOM();
